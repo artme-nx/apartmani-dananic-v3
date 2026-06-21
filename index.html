@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apartmani Dananić — Vodice</title>
+<meta name="description" content="Apartmani Dananić, Vodice — dva moderna apartmana (Plavi i Crveni) u mirnom dijelu Vodica, samo 3 minute hoda do plaže. 55 m², 2 spavaće sobe, klima, parking, balkon. Od 90 €." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏖️</text></svg>" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+<!-- Swiper -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<style>
+:root{
+  --bg:#FAFAF8;
+  --navy:#0A1A35;
+  --teal:#2A9D8F;
+  --teal-dark:#1F7A6F;
+  --amber:#F4A261;
+  --cream:#F0E9DC;
+  --text:#1A1A1A;
+  --white:#ffffff;
+  --sky:#E8F4F4;
+  --line:rgba(10,26,53,0.10);
+  --font-display:'Space Grotesk',system-ui,sans-serif;
+  --font-serif:'Cormorant Garamond',Georgia,serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --maxw:1280px;
+  --r:18px;
+  --shadow:0 24px 60px -28px rgba(10,26,53,0.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body);
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.05;letter-spacing:-0.02em;color:var(--navy)}
+.serif{font-family:var(--font-serif);font-style:italic;font-weight:500}
+.eyebrow{
+  font-family:var(--font-display);
+  text-transform:uppercase;
+  letter-spacing:0.28em;
+  font-size:11px;
+  font-weight:600;
+  color:var(--teal);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+section{position:relative}
+
+/* ---------- BUTTONS ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.6em;
+  font-family:var(--font-display);font-weight:600;font-size:14px;
+  letter-spacing:0.02em;
+  padding:15px 28px;border-radius:100px;
+  cursor:pointer;border:1.5px solid transparent;
+  transition:transform .35s cubic-bezier(.16,1,.3,1),background .3s,color .3s,box-shadow .3s;
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-teal{background:var(--teal);color:#fff;box-shadow:0 14px 30px -12px rgba(42,157,143,0.7)}
+.btn-teal:hover{background:var(--teal-dark)}
+.btn-amber{background:var(--amber);color:var(--navy);box-shadow:0 14px 30px -12px rgba(244,162,97,0.7)}
+.btn-amber:hover{background:#ef8f44}
+.btn-ghost{background:transparent;border-color:rgba(255,255,255,.55);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.14);border-color:#fff}
+.btn-outline{background:transparent;border-color:var(--navy);color:var(--navy)}
+.btn-outline:hover{background:var(--navy);color:#fff}
+
+/* ---------- HEADER ---------- */
+header{
+  position:fixed;top:0;left:0;width:100%;z-index:100;
+  transition:background .4s ease,box-shadow .4s ease,padding .4s ease;
+  padding:20px 0;
+}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;flex-direction:column;line-height:1;color:#fff;transition:color .4s}
+.brand b{font-family:var(--font-display);font-weight:700;font-size:20px;letter-spacing:-0.01em}
+.brand span{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;opacity:.85;margin-top:3px}
+nav.main{display:flex;align-items:center;gap:32px}
+nav.main a{
+  font-family:var(--font-display);font-weight:500;font-size:14px;color:#fff;
+  transition:color .3s,opacity .3s;opacity:.92;position:relative;
+}
+nav.main a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1.5px;background:var(--teal);transition:width .3s}
+nav.main a:hover{opacity:1}
+nav.main a:hover::after{width:100%}
+.header-cta{display:flex;align-items:center;gap:14px}
+
+/* solid state after scroll */
+header.solid{background:rgba(250,250,248,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);padding:14px 0}
+header.solid .brand{color:var(--navy)}
+header.solid nav.main a{color:var(--navy)}
+header.solid .btn-ghost{border-color:var(--navy);color:var(--navy)}
+header.solid .btn-ghost:hover{background:var(--navy);color:#fff}
+
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px;z-index:120}
+.burger span{width:26px;height:2px;background:#fff;border-radius:2px;transition:.35s}
+header.solid .burger span{background:var(--navy)}
+.mobile-nav .burger span{background:var(--navy)}
+
+/* mobile nav overlay */
+.mobile-nav{
+  position:fixed;inset:0;z-index:110;background:var(--bg);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;
+  opacity:0;pointer-events:none;transform:translateY(-12px);transition:.45s cubic-bezier(.16,1,.3,1);
+}
+.mobile-nav.open{opacity:1;pointer-events:all;transform:none}
+.mobile-nav a{font-family:var(--font-display);font-size:30px;font-weight:600;color:var(--navy);padding:10px}
+.mobile-nav .btn{margin-top:20px}
+.mobile-nav .burger{position:absolute;top:24px;right:24px;display:flex}
+
+/* ---------- HERO ---------- */
+.hero{height:100svh;min-height:620px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.hero-slides{position:absolute;inset:0;z-index:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.8s ease}
+.hero-slide.active{opacity:1}
+.hero-slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);animation:kenburns 12s ease-out forwards}
+.hero-slide.active img{animation:kenburns 12s ease-out forwards}
+@keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.16)}}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(10,26,53,0.30) 0%,rgba(10,26,53,0.05) 38%,rgba(10,26,53,0.55) 100%);
+}
+.hero-inner{position:relative;z-index:2;width:100%;padding-bottom:9vh}
+.hero .eyebrow{color:#fff;opacity:.95;display:block;margin-bottom:18px}
+.hero h1{
+  color:#fff;font-weight:700;
+  font-size:clamp(48px,9.2vw,128px);
+  letter-spacing:-0.03em;line-height:.95;
+  text-shadow:0 6px 40px rgba(10,26,53,.35);
+}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln > span{display:block}
+.hero-sub{
+  color:#fff;font-size:clamp(18px,2.4vw,26px);margin-top:22px;
+  font-family:var(--font-serif);font-style:italic;font-weight:500;
+  text-shadow:0 2px 20px rgba(10,26,53,.4);max-width:640px;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.scroll-hint{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;
+  color:#fff;font-family:var(--font-display);font-size:10px;letter-spacing:0.3em;text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.9;
+}
+.scroll-hint .line{width:1.5px;height:46px;background:linear-gradient(#fff,transparent);animation:drop 1.8s ease-in-out infinite}
+@keyframes drop{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+/* reveal */
+[data-reveal]{opacity:0;transform:translateY(34px)}
+
+/* ---------- INTRO ---------- */
+.intro{padding:clamp(80px,12vw,150px) 0;text-align:center}
+.intro .wrap{max-width:920px}
+.intro p{
+  font-family:var(--font-serif);font-style:italic;font-weight:500;
+  font-size:clamp(26px,4vw,46px);line-height:1.22;color:var(--navy);
+}
+.intro p em{font-style:normal;color:var(--teal)}
+.intro .sm{
+  font-family:var(--font-body);font-style:normal;font-size:17px;color:#4a5568;
+  margin-top:26px;max-width:620px;margin-left:auto;margin-right:auto;line-height:1.7;
+}
+
+/* ---------- SECTION HEADER ---------- */
+.sec-head{margin-bottom:54px;max-width:760px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-head .eyebrow{display:block;margin-bottom:16px}
+.sec-head h2{font-size:clamp(34px,5.4vw,68px)}
+.sec-head p{margin-top:18px;font-size:17px;color:#4a5568;max-width:560px}
+.sec-head.center p{margin-left:auto;margin-right:auto}
+
+/* ---------- APARTMANI ---------- */
+.apartments{padding:clamp(40px,6vw,70px) 0 clamp(80px,11vw,130px)}
+.apt-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.apt-card{
+  background:var(--white);border-radius:var(--r);overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid var(--line);
+  display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s;
+}
+.apt-card:hover{transform:translateY(-6px);box-shadow:0 36px 70px -30px rgba(10,26,53,0.45)}
+.apt-media{position:relative;aspect-ratio:4/3;overflow:hidden}
+.apt-media img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.apt-card:hover .apt-media img{transform:scale(1.08)}
+.apt-tag{
+  position:absolute;top:16px;left:16px;z-index:2;
+  font-family:var(--font-display);font-weight:600;font-size:12px;letter-spacing:.08em;
+  color:#fff;padding:8px 16px;border-radius:100px;backdrop-filter:blur(4px);
+}
+.apt-tag.plavi{background:rgba(42,108,193,.85)}
+.apt-tag.crveni{background:rgba(214,84,72,.85)}
+.apt-body{padding:30px 30px 32px;display:flex;flex-direction:column;flex:1}
+.apt-body h3{font-size:30px;margin-bottom:4px}
+.apt-body .price{font-family:var(--font-serif);font-style:italic;font-size:21px;color:var(--teal);margin-bottom:18px}
+.apt-specs{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:26px}
+.apt-specs li{font-size:14.5px;color:#374151;display:flex;align-items:center;gap:9px}
+.apt-specs li svg{width:17px;height:17px;flex:0 0 17px;stroke:var(--teal)}
+.apt-body .btn{margin-top:auto;align-self:flex-start}
+
+/* ---------- SADRŽAJI ---------- */
+.amen{padding:clamp(80px,11vw,130px) 0;background:var(--sky)}
+.amen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.amen-card{
+  background:var(--white);border-radius:var(--r);padding:34px 28px;
+  border:1px solid var(--line);transition:transform .4s,box-shadow .4s;
+}
+.amen-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.amen-ic{
+  width:54px;height:54px;border-radius:14px;background:var(--sky);
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+}
+.amen-ic svg{width:26px;height:26px;stroke:var(--teal);fill:none;stroke-width:1.7}
+.amen-card h4{font-size:20px;margin-bottom:8px}
+.amen-card p{font-size:15px;color:#4a5568}
+
+/* ---------- LOKACIJA ---------- */
+.loc{padding:clamp(80px,11vw,130px) 0}
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+.loc-stats{display:flex;gap:14px;margin:30px 0 28px;flex-wrap:wrap}
+.stat{background:var(--cream);border-radius:14px;padding:18px 22px;flex:1;min-width:130px}
+.stat b{display:block;font-family:var(--font-display);font-size:30px;color:var(--navy);line-height:1}
+.stat span{font-size:13px;color:#4a5568;margin-top:4px;display:block}
+.loc-list{list-style:none;margin-top:8px}
+.loc-list li{padding:11px 0;border-bottom:1px solid var(--line);font-size:16px;color:#374151;display:flex;gap:12px;align-items:flex-start}
+.loc-list li:last-child{border-bottom:0}
+.loc-list li svg{width:19px;height:19px;flex:0 0 19px;stroke:var(--amber);margin-top:3px}
+.map-frame{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);aspect-ratio:4/3.4;background:var(--cream)}
+.map-frame iframe{width:100%;height:100%;border:0;display:block}
+
+/* ---------- GALERIJA ---------- */
+.gallery{padding:clamp(80px,11vw,120px) 0;background:var(--navy);overflow:hidden}
+.gallery .sec-head h2,.gallery .sec-head p{color:#fff}
+.gallery .sec-head p{color:rgba(255,255,255,.72)}
+.gallery .eyebrow{color:var(--amber)}
+.swiper{overflow:visible}
+.swiper-slide{width:clamp(280px,42vw,540px)}
+.g-img{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.g-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.swiper-slide:hover .g-img img{transform:scale(1.06)}
+.g-cap{color:rgba(255,255,255,.7);font-family:var(--font-display);font-size:13px;letter-spacing:.04em;margin-top:14px;padding-left:4px}
+.g-hint{color:rgba(255,255,255,.5);font-size:13px;margin-top:30px;display:flex;align-items:center;gap:10px;font-family:var(--font-display);letter-spacing:.05em;text-transform:uppercase}
+.g-hint svg{width:30px;height:18px;stroke:var(--amber)}
+
+/* ---------- UPIT / FORM ---------- */
+.enq{padding:clamp(80px,11vw,140px) 0}
+.enq-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:56px;align-items:start}
+.enq-aside h2{font-size:clamp(32px,4.6vw,56px);margin-bottom:18px}
+.enq-aside p{font-size:17px;color:#4a5568;margin-bottom:30px;max-width:420px}
+.enq-contact{display:flex;flex-direction:column;gap:14px}
+.enq-contact a{display:flex;align-items:center;gap:14px;font-family:var(--font-display);font-weight:500;font-size:17px;color:var(--navy)}
+.enq-contact a:hover{color:var(--teal)}
+.enq-contact .ic{width:46px;height:46px;border-radius:12px;background:var(--sky);display:flex;align-items:center;justify-content:center;flex:0 0 46px}
+.enq-contact .ic svg{width:21px;height:21px;stroke:var(--teal);fill:none;stroke-width:1.7}
+form.enq-form{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:38px;box-shadow:var(--shadow)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-family:var(--font-display);font-size:12.5px;font-weight:500;letter-spacing:.04em;color:var(--navy);text-transform:uppercase}
+.field input,.field select,.field textarea{
+  font-family:var(--font-body);font-size:15.5px;color:var(--text);
+  padding:13px 15px;border:1.5px solid var(--line);border-radius:11px;background:var(--bg);
+  transition:border-color .25s,box-shadow .25s;width:100%;
+}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(42,157,143,.12);
+}
+form.enq-form .btn{width:100%;justify-content:center;margin-top:8px}
+.form-note{font-size:13px;color:#6b7280;margin-top:14px;text-align:center}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--navy);color:#fff;padding:clamp(64px,8vw,90px) 0 36px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:54px}
+.foot-brand b{font-family:var(--font-display);font-weight:700;font-size:24px;display:block;margin-bottom:14px}
+.foot-brand p{color:rgba(255,255,255,.7);font-size:15px;max-width:320px}
+.foot-brand .serif{color:var(--amber);font-size:21px;display:block;margin-top:18px}
+.foot-col h5{font-family:var(--font-display);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:18px;font-weight:600}
+.foot-col a,.foot-col p{display:block;color:rgba(255,255,255,.78);font-size:15px;margin-bottom:11px;transition:color .25s}
+.foot-col a:hover{color:#fff}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.14);padding-top:26px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:rgba(255,255,255,.55);font-size:13px}
+
+/* ---------- STICKY BOOKING BAR (mobile) ---------- */
+.book-bar{
+  position:fixed;left:0;bottom:0;width:100%;z-index:90;
+  background:rgba(250,250,248,.96);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);padding:12px 18px;
+  display:none;gap:12px;align-items:center;
+  transform:translateY(110%);transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+.book-bar.show{transform:none}
+.book-bar .bb-info{flex:1;line-height:1.2}
+.book-bar .bb-info b{font-family:var(--font-display);color:var(--navy);font-size:15px;display:block}
+.book-bar .bb-info span{font-size:12px;color:#6b7280}
+.book-bar .btn{padding:13px 22px;font-size:13.5px}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:960px){
+  nav.main{display:none}
+  .header-cta .btn:not(.burger){display:none}
+  .burger{display:flex}
+  .apt-grid,.amen-grid,.loc-grid,.enq-grid,.foot-grid{grid-template-columns:1fr}
+  .amen-grid{grid-template-columns:1fr 1fr}
+  .loc-grid{gap:40px}
+  .enq-grid{gap:40px}
+  .book-bar{display:flex}
+  body{padding-bottom:74px}
+}
+@media (max-width:560px){
+  .wrap{padding:0 20px}
+  .amen-grid{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  .apt-specs{grid-template-columns:1fr}
+  .foot-bottom{flex-direction:column;gap:6px}
+  .apt-body,form.enq-form{padding:26px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  [data-reveal]{opacity:1!important;transform:none!important}
+  .hero-slide img{animation:none!important;transform:scale(1.05)!important}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="wrap">
+    <a href="#top" class="brand">
+      <b>Apartmani Dananić</b>
+      <span>Vodice · Hrvatska</span>
+    </a>
+    <nav class="main">
+      <a href="#apartmani">Apartmani</a>
+      <a href="#sadrzaji">Sadržaji</a>
+      <a href="#lokacija">Lokacija</a>
+      <a href="#galerija">Galerija</a>
+      <a href="#upit">Upit</a>
+    </nav>
+    <div class="header-cta">
+      <a href="tel:+385917203959" class="btn btn-teal">Rezervirajte</a>
+      <button class="burger" id="burgerOpen" aria-label="Otvori izbornik"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="burger" id="burgerClose" aria-label="Zatvori izbornik"><span></span><span></span><span></span></button>
+  <a href="#apartmani">Apartmani</a>
+  <a href="#sadrzaji">Sadržaji</a>
+  <a href="#lokacija">Lokacija</a>
+  <a href="#galerija">Galerija</a>
+  <a href="#upit">Upit</a>
+  <a href="tel:+385917203959" class="btn btn-teal">Rezervirajte</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-slides" id="heroSlides">
+    <div class="hero-slide active"><img src="https://loremflickr.com/1920/1280/beach,sea?lock=11" alt="Plaža u Vodicama" fetchpriority="high" /></div>
+    <div class="hero-slide"><img src="https://loremflickr.com/1920/1280/vodice,coast?lock=22" alt="Obala Vodica" /></div>
+    <div class="hero-slide"><img src="https://loremflickr.com/1920/1280/adriatic,sea?lock=33" alt="Jadransko more" /></div>
+  </div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow">Apartmani Dananić · Vodice</span>
+      <h1 id="heroTitle">
+        <span class="ln"><span>Tri minute</span></span>
+        <span class="ln"><span>do mora.</span></span>
+      </h1>
+      <p class="hero-sub">Dva moderna apartmana u mirnom dijelu Vodica — more, riva i plaža na dohvat ruke.</p>
+      <div class="hero-actions">
+        <a href="tel:+385917203959" class="btn btn-amber">Rezervirajte</a>
+        <a href="#apartmani" class="btn btn-ghost">Apartmani</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Istražite</span><span class="line"></span></div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="wrap" data-reveal>
+    <p>Dva moderna apartmana u mirnom dijelu Vodica — <em>samo tri minute hoda</em> od plaže i morske rive.</p>
+    <p class="sm">Apartmani Plavi i Crveni, svaki po 55 m², s dvije spavaće sobe, balkonom uz more i vrtom s mediteranskim biljem. Idealno za obitelji i društva od 4 do 9 gostiju.</p>
+  </div>
+</section>
+
+<!-- APARTMANI -->
+<section class="apartments" id="apartmani">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">Smještaj</span>
+      <h2>Apartmani</h2>
+      <p>Dva jednako opremljena apartmana s tri zvjezdice — odaberite Plavi ili Crveni. Oba nude 55 m² prostora, dvije spavaće sobe i balkon s pogledom.</p>
+    </div>
+    <div class="apt-grid">
+
+      <article class="apt-card" data-reveal>
+        <div class="apt-media">
+          <span class="apt-tag plavi">Apartman Plavi</span>
+          <img src="https://loremflickr.com/900/680/apartment,interior?lock=101" alt="Apartman Plavi — interijer" loading="lazy" />
+        </div>
+        <div class="apt-body">
+          <h3>Plavi</h3>
+          <div class="price">od 90 € / noć</div>
+          <ul class="apt-specs">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>55 m²</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6M3 14h18M7 10V8M17 10V8"/></svg>2 spavaće sobe</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M16 11a4 4 0 1 0-8 0M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/></svg>4 + 2 ležaja</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M2 12h20M5 12V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6M7 12v8M17 12v8"/></svg>Balkon uz more</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M3 7h18M3 12h18M3 17h12"/></svg>Klima · SAT TV</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M5 11l7-7 7 7M6 10v9h12v-9"/></svg>Privatni parking</li>
+          </ul>
+          <a href="tel:+385917203959" class="btn btn-teal">Rezervirajte</a>
+        </div>
+      </article>
+
+      <article class="apt-card" data-reveal>
+        <div class="apt-media">
+          <span class="apt-tag crveni">Apartman Crveni</span>
+          <img src="https://loremflickr.com/900/680/apartment,bedroom?lock=102" alt="Apartman Crveni — interijer" loading="lazy" />
+        </div>
+        <div class="apt-body">
+          <h3>Crveni</h3>
+          <div class="price">od 90 € / noć</div>
+          <ul class="apt-specs">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>55 m²</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6M3 14h18M7 10V8M17 10V8"/></svg>2 spavaće sobe</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M16 11a4 4 0 1 0-8 0M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/></svg>4 + 2 ležaja</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M2 12h20M5 12V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6M7 12v8M17 12v8"/></svg>Balkon uz more</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M3 7h18M3 12h18M3 17h12"/></svg>Klima · SAT TV</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M5 11l7-7 7 7M6 10v9h12v-9"/></svg>Privatni parking</li>
+          </ul>
+          <a href="tel:+385917203959" class="btn btn-teal">Rezervirajte</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SADRŽAJI -->
+<section class="amen" id="sadrzaji">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <span class="eyebrow">Što vas čeka</span>
+      <h2>Sadržaji</h2>
+      <p>Sve što je potrebno za bezbrižan ljetni odmor uz more.</p>
+    </div>
+    <div class="amen-grid">
+      <div class="amen-card" data-reveal>
+        <div class="amen-ic"><svg viewBox="0 0 24 24"><path d="M5 8h14M5 12h14M7 16h10M9 4v16"/></svg></div>
+        <h4>Klima uređaj</h4>
+        <p>Klimatizirane sobe i dnevni boravak — ugodna svježina i u najtoplijim ljetnim danima.</p>
+      </div>
+      <div class="amen-card" data-reveal>
+        <div class="amen-ic"><svg viewBox="0 0 24 24"><path d="M5 11l7-7 7 7M6 10v9h12v-9M11 19v-5h2v5"/></svg></div>
+        <h4>Privatni parking</h4>
+        <p>Vlastito parkirno mjesto uz apartman — bez potrage i naknada, automobil je odmah uz vas.</p>
+      </div>
+      <div class="amen-card" data-reveal>
+        <div class="amen-ic"><svg viewBox="0 0 24 24"><path d="M3 12h18M5 12V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5M7 12v7M17 12v7"/></svg></div>
+        <h4>Balkon s pogledom</h4>
+        <p>Balkon sa stolom i stolicama — jutarnja kava i večere na otvorenom uz mediteranski ambijent.</p>
+      </div>
+      <div class="amen-card" data-reveal>
+        <div class="amen-ic"><svg viewBox="0 0 24 24"><path d="M12 3v6M8 6h8M5 13h14a0 0 0 0 1 0 0 7 7 0 0 1-14 0zM9 21h6"/></svg></div>
+        <h4>Roštilj u dvorištu</h4>
+        <p>Vrt s mediteranskim biljem i roštiljem — savršeno za opuštene ljetne objede s društvom.</p>
+      </div>
+      <div class="amen-card" data-reveal>
+        <div class="amen-ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H4zM8 20h8M12 16v4M7 8h4M7 11h6"/></svg></div>
+        <h4>Opremljena kuhinja</h4>
+        <p>Potpuno opremljena kuhinja s hladnjakom i svim posuđem — kuhajte kao kod kuće.</p>
+      </div>
+      <div class="amen-card" data-reveal>
+        <div class="amen-ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M9 22h6M8 2l4 4 4-4"/></svg></div>
+        <h4>SAT TV</h4>
+        <p>Satelitska televizija i hladnjak u svakom apartmanu — udobnost doma uz more.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOKACIJA & PLAŽA -->
+<section class="loc" id="lokacija">
+  <div class="wrap">
+    <div class="loc-grid">
+      <div data-reveal>
+        <span class="eyebrow">Lokacija &amp; plaža</span>
+        <h2 style="font-size:clamp(32px,5vw,58px);margin-top:14px">Tristo metara do plaže</h2>
+        <div class="loc-stats">
+          <div class="stat"><b>300 m</b><span>do plaže</span></div>
+          <div class="stat"><b>3 min</b><span>pješice</span></div>
+          <div class="stat"><b>4–9</b><span>gostiju</span></div>
+        </div>
+        <ul class="loc-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Smiren dio Vodica, samo 300 m (oko 3 minute hoda) do plaže.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M3 12c2-3 5-3 7 0s5 3 7 0M3 17c2-3 5-3 7 0s5 3 7 0"/></svg>Morska riva vodi prema centru Vodica i susjednom Tribunju.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M3 9l9-6 9 6v11H3zM9 20v-6h6v6"/></svg>Blizu svih sadržaja — trgovine, restorani, kafići i tržnica.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M12 2v4M12 18v4M4 12H2M22 12h-2M6 6l-1.5-1.5M18 6l1.5-1.5"/><circle cx="12" cy="12" r="4"/></svg>Vrt s mediteranskim biljem i roštiljem za opuštene ljetne dane.</li>
+        </ul>
+      </div>
+      <div class="map-frame" data-reveal>
+        <iframe
+          src="https://www.google.com/maps?q=Vodice,Croatia&output=embed"
+          loading="lazy" title="Vodice, Hrvatska — karta"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIJA -->
+<section class="gallery" id="galerija">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">Galerija</span>
+      <h2>More, sunce i ljeto</h2>
+      <p>Povucite za pregled — od plaže i rive do apartmana i balkona uz more.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="swiper" id="gallerySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><div class="g-img"><img src="https://loremflickr.com/720/540/beach,sea?lock=201" alt="Plaža Vodice" loading="lazy" /></div><div class="g-cap">Plaža — 3 minute hoda</div></div>
+        <div class="swiper-slide"><div class="g-img"><img src="https://loremflickr.com/720/540/apartment,interior?lock=202" alt="Interijer apartmana" loading="lazy" /></div><div class="g-cap">Dnevni boravak</div></div>
+        <div class="swiper-slide"><div class="g-img"><img src="https://loremflickr.com/720/540/bedroom?lock=203" alt="Spavaća soba" loading="lazy" /></div><div class="g-cap">Spavaća soba</div></div>
+        <div class="swiper-slide"><div class="g-img"><img src="https://loremflickr.com/720/540/balcony,sea?lock=204" alt="Balkon s pogledom na more" loading="lazy" /></div><div class="g-cap">Balkon uz more</div></div>
+        <div class="swiper-slide"><div class="g-img"><img src="https://loremflickr.com/720/540/vodice,coast?lock=205" alt="Obala Vodica" loading="lazy" /></div><div class="g-cap">Riva prema centru</div></div>
+        <div class="swiper-slide"><div class="g-img"><img src="https://loremflickr.com/720/540/pool,summer?lock=206" alt="Ljetni ambijent" loading="lazy" /></div><div class="g-cap">Ljetni ambijent</div></div>
+      </div>
+    </div>
+    <div class="g-hint"><svg viewBox="0 0 30 18" fill="none" stroke-width="1.7"><path d="M2 9h26M22 3l6 6-6 6M8 3L2 9l6 6"/></svg>Povucite za više</div>
+  </div>
+</section>
+
+<!-- UPIT -->
+<section class="enq" id="upit">
+  <div class="wrap">
+    <div class="enq-grid">
+      <div class="enq-aside" data-reveal>
+        <span class="eyebrow">Rezervacija</span>
+        <h2>Pošaljite upit</h2>
+        <p>Javite nam željene datume i broj gostiju — odgovaramo brzo i rado pomažemo oko vašeg boravka u Vodicama.</p>
+        <div class="enq-contact">
+          <a href="tel:+385917203959">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2z"/></svg></span>
+            +385 91 720 3959
+          </a>
+          <a href="mailto:dananicmarijan@gmail.com">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            dananicmarijan@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <form class="enq-form" data-reveal action="mailto:dananicmarijan@gmail.com" method="post" enctype="text/plain">
+        <div class="frow">
+          <div class="field full">
+            <label for="ime">Ime i prezime</label>
+            <input id="ime" name="ime" type="text" placeholder="Vaše ime" required />
+          </div>
+        </div>
+        <div class="frow">
+          <div class="field">
+            <label for="dolazak">Dolazak</label>
+            <input id="dolazak" name="dolazak" type="date" required />
+          </div>
+          <div class="field">
+            <label for="odlazak">Odlazak</label>
+            <input id="odlazak" name="odlazak" type="date" required />
+          </div>
+        </div>
+        <div class="frow">
+          <div class="field">
+            <label for="gosti">Broj gostiju</label>
+            <select id="gosti" name="gosti">
+              <option>1–2 gosta</option>
+              <option>3–4 gosta</option>
+              <option>5–6 gostiju</option>
+              <option>7–9 gostiju</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="apartman">Apartman</label>
+            <select id="apartman" name="apartman">
+              <option>Bilo koji</option>
+              <option>Plavi</option>
+              <option>Crveni</option>
+              <option>Oba apartmana</option>
+            </select>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="field full">
+            <label for="poruka">Poruka</label>
+            <textarea id="poruka" name="poruka" placeholder="Vaš upit, pitanja ili posebne želje..."></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-amber">Pošaljite upit</button>
+        <p class="form-note">Ili nas nazovite na +385 91 720 3959 — odgovaramo isti dan.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <b>Apartmani Dananić</b>
+        <p>Dva moderna apartmana u mirnom dijelu Vodica, samo tri minute hoda od plaže i morske rive.</p>
+        <span class="serif">Tri minute do mora.</span>
+      </div>
+      <div class="foot-col">
+        <h5>Kontakt</h5>
+        <a href="tel:+385917203959">+385 91 720 3959</a>
+        <a href="mailto:dananicmarijan@gmail.com">dananicmarijan@gmail.com</a>
+        <p>Vodice, Hrvatska</p>
+      </div>
+      <div class="foot-col">
+        <h5>Stranica</h5>
+        <a href="#apartmani">Apartmani</a>
+        <a href="#sadrzaji">Sadržaji</a>
+        <a href="#lokacija">Lokacija</a>
+        <a href="#galerija">Galerija</a>
+        <a href="#upit">Upit</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Apartmani Dananić · Vodice</span>
+      <span>Smještaj uz more · 4–9 gostiju · od 90 €</span>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY BOOKING BAR -->
+<div class="book-bar" id="bookBar">
+  <div class="bb-info">
+    <b>Apartmani Dananić</b>
+    <span>od 90 € · 3 min do plaže</span>
+  </div>
+  <a href="tel:+385917203959" class="btn btn-teal">Rezervirajte</a>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ----- MOBILE NAV ----- */
+  var mNav = document.getElementById('mobileNav');
+  document.getElementById('burgerOpen').addEventListener('click', function(){ mNav.classList.add('open'); document.body.style.overflow='hidden'; });
+  function closeNav(){ mNav.classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('burgerClose').addEventListener('click', closeNav);
+  mNav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeNav); });
+
+  /* ----- STICKY HEADER + BOOK BAR ----- */
+  var header = document.getElementById('header');
+  var bookBar = document.getElementById('bookBar');
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    if(y > 100){ header.classList.add('solid'); } else { header.classList.remove('solid'); }
+    if(y > 600){ bookBar.classList.add('show'); } else { bookBar.classList.remove('show'); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ----- HERO SLIDESHOW (Ken Burns crossfade) ----- */
+  var slides = document.querySelectorAll('#heroSlides .hero-slide');
+  if(slides.length > 1 && !reduce){
+    var idx = 0;
+    setInterval(function(){
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      var img = slides[idx].querySelector('img');
+      img.style.animation = 'none';
+      void img.offsetWidth;
+      img.style.animation = '';
+      slides[idx].classList.add('active');
+    }, 6000);
+  }
+
+  /* ----- SWIPER GALLERY ----- */
+  new Swiper('#gallerySwiper', {
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    grabCursor: true,
+    freeMode: true,
+    speed: 600,
+    breakpoints:{ 768:{ spaceBetween:30 } }
+  });
+
+  /* ----- GSAP + LENIS ----- */
+  if(window.gsap){
+    gsap.registerPlugin(ScrollTrigger);
+
+    if(window.Lenis && !reduce){
+      var lenis = new Lenis({ duration:1.15, easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));}, smoothWheel:true });
+      gsap.ticker.add(function(time){ lenis.raf(time*1000); });
+      gsap.ticker.lagSmoothing(0);
+      lenis.on('scroll', ScrollTrigger.update);
+      document.querySelectorAll('a[href^="#"]').forEach(function(a){
+        a.addEventListener('click', function(e){
+          var t = document.querySelector(a.getAttribute('href'));
+          if(t){ e.preventDefault(); lenis.scrollTo(t, {offset:-70}); }
+        });
+      });
+    }
+
+    if(!reduce){
+      /* Hero title slide-up */
+      gsap.to('#heroTitle .ln > span', { y:0, duration:1.1, stagger:0.12, ease:'power3.out', delay:0.25 });
+      gsap.set('#heroTitle .ln > span', { y:'110%' });
+      gsap.fromTo('#heroTitle .ln > span', {y:'110%'}, {y:'0%', duration:1.1, stagger:0.12, ease:'power3.out', delay:0.25});
+      gsap.fromTo('.hero-sub, .hero-actions', {y:24,opacity:0}, {y:0,opacity:1,duration:1,stagger:0.12,ease:'power3.out',delay:0.7});
+
+      /* Scroll reveals */
+      gsap.utils.toArray('[data-reveal]').forEach(function(el){
+        gsap.to(el, {
+          opacity:1, y:0, duration:0.9, ease:'power3.out',
+          scrollTrigger:{ trigger:el, start:'top 86%' }
+        });
+      });
+    } else {
+      document.querySelectorAll('[data-reveal]').forEach(function(el){ el.style.opacity=1; el.style.transform='none'; });
+    }
+  }
+})();
+</script>
+</body>
+</html>
