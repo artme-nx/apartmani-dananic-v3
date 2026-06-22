@@ -716,7 +716,7 @@ footer{background:var(--navy);color:#fff;padding:clamp(64px,8vw,90px) 0 36px}
     gsap.registerPlugin(ScrollTrigger);
 
     if(window.Lenis && !reduce){
-      var lenis = new Lenis({ duration:1.15, easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));}, smoothWheel:true });
+      var lenis = new Lenis({lerp:0.2, wheelMultiplier:1, smoothWheel:true, syncTouch:false});
       gsap.ticker.add(function(time){ lenis.raf(time*1000); });
       gsap.ticker.lagSmoothing(0);
       lenis.on('scroll', ScrollTrigger.update);
